@@ -1,5 +1,3 @@
-from math import isnan
-
 import PATHS
 import pandas as pd
 from datetime import datetime
