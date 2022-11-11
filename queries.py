@@ -1,6 +1,6 @@
 from math import isnan
 
-import src.PATHS as PATHS
+import PATHS
 import pandas as pd
 from datetime import datetime
 from functools import partial
