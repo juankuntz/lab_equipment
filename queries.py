@@ -127,8 +127,10 @@ class QueriesLib:
             ps_in_range['Date'] = ps_in_range['Date'].dt.strftime('%B, %Y')
 
         # Define dictionary recording the type of each event:
-        type_dict = {(row['CRGH ID'], row['Date']): row['Event Type'] for
-                     _, row in ps_in_range.iterrows()}  #
+        new_entries = {(row['CRGH ID'], row['Date'].strftime('%B, %Y')): 'Due'
+        if row['Date'] > pd.to_datetime('today') else 'Overdue'
+                       for _, row in us_in_range.iterrows()}
+        type_dict = {**type_dict, **new_entries}
         ps_in_range.drop(
             columns=['Event Type'])  # We don't need these anymore.
 
