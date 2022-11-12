@@ -143,9 +143,10 @@ class QueriesLib:
                                  & (us['Date'] <= end_date)]
 
         # Update type_dict with new types.
-        type_dict |= {(row['CRGH ID'], row['Date'].strftime('%B, %Y')): 'Due'
+        new_entries = {(row['CRGH ID'], row['Date'].strftime('%B, %Y')): 'Due'
         if row['Date'] > pd.to_datetime('today') else 'Overdue'
-                      for _, row in us_in_range.iterrows()}
+                       for _, row in us_in_range.iterrows()}
+        type_dict = {**type_dict, **new_entries}
 
         # Format dates:
         if days_until_end_date >= pd.Timedelta(0):
