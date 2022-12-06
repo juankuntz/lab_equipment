@@ -53,11 +53,11 @@ class QueriesLib:
         """Swaps 'Service frequency' strings in self.ce for corresponding
         timedeltas."""
         # TODO: Remove '3 monthly' and '6 monthly' from sfd once db is updated.
-        sfd = {"Yearly": pd.Timedelta(days=365),
-               "Biyearly": pd.Timedelta(days=182),
-               "6 monthly": pd.Timedelta(days=182),
-               "Quarterly": pd.Timedelta(days=91),
-               "3 monthly": pd.Timedelta(days=91),
+        sfd = {"Yearly": pd.DateOffset(months=12), #pd.Timedelta(days=365),
+               "Biyearly": pd.DateOffset(months=6), #pd.Timedelta(days=182),
+               "6 monthly": pd.DateOffset(months=6), #pd.Timedelta(days=182),
+               "Quarterly": pd.DateOffset(months=3), #pd.Timedelta(days=91),
+               "3 monthly": pd.DateOffset(months=3), #pd.Timedelta(days=91),
                "N/A": pd.Timedelta(days=int(1e5))}
         self.ce["Service frequency"].replace(sfd, inplace=True)
 
